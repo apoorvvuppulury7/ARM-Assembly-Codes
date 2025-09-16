@@ -1,0 +1,23 @@
+//Write an ARM Assembly program to toggle-counter LEDs connected to Port 1.16–P1.23 using specific patterns.
+
+  AREA I_O, CODE, READONLY
+START
+  LDR R4, =0xE0028018;
+  LDR R5, =0xE0028010;
+  LDR R0, =0x00FF0000;
+  LDR R1, =0x00000000;
+  MOV R2, #0x00000001;
+  MOV R3, #0x00000010;
+  STR R0, [R4];
+
+DELAY_LOOP
+    STR R1, [R5];
+    ADD R1, R1, R2;
+    CMP R1, R3;
+    BEQ EXIT
+    BNE DELAY_LOOP
+
+EXIT
+    B EXIT
+  NOP
+  END
