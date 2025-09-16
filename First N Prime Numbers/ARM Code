@@ -1,0 +1,49 @@
+AIM - Write an ARM Assembly program to generate the first N prime numbers.
+
+      AREA ADDITION, CODE, READONLY
+START
+      LDR R0,=0X40000000
+      MOV R5,N              --------> CHOOSE N ACCORDING TO NUMBER OF PRIMES YOU WANT.
+      MOV R1,#2
+      MOV R2,#2
+
+LOOP1 
+            MOV R9,#1;
+            MUL R3,R2,R2
+            CMP R3,R1; 
+            BGT NEXTR1 ; 
+            MOV R7, R1
+            MOV R8, R2;
+
+LOOPDIV
+            CMP R7,R8
+            BEQ NOTPRIME
+            BLT NOTDIV
+            SUB R7,R7,R8
+            B LOOPDIV
+
+NOTPRIME
+            MOV R9,#0
+            B NEXTR1
+
+NOTDIV
+            ADD R2,R2,#1
+            B LOOP1
+
+NEXTR1
+            CMP R9,#0
+            BEQ NOTSTORE
+            STR R1,[R0],#4
+            SUB R5,R5,#1
+            CMP R5,#0
+            BEQ EXIT
+
+NOTSTORE
+            ADD R1,R1,#1
+            MOV R2,#2
+            B LOOP1
+
+EXIT
+            B EXIT
+      NOP
+      END
