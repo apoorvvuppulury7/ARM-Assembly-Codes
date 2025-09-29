@@ -1,6 +1,8 @@
 # AIM
 Write an ARM Assembly program to compute CRC-8.
+
 Use CRC-8 file to understand the concept of cyclic redundancy check (CRC).
+
 Use ARM Code to understand the running on the Keil Uvision 4 softwares.
 
 # Program Details
